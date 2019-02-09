@@ -1,6 +1,8 @@
 virtualbox
 =========
 
+[![pipeline status](https://gitlab.com/devoperate/ansible-virtualbox/badges/master/pipeline.svg)](https://gitlab.com/devoperate/ansible-virtualbox/commits/master)
+
 An Ansible role that installs VirtualBox.
 
 Requirements
