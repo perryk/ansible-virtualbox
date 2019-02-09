@@ -1,0 +1,31 @@
+stages:
+  - test
+
+variables:
+  ANSIBLE_FORCE_COLOR: 'true'
+
+before_script:
+  - dnf install python2-devel python2-pip -y && python2 -m pip install ansible || yum install -y ansible || true
+  - sh -c "apt-get update && apt-get install -y python3-pip && pip3 install ansible" || true
+
+test-fedora-29:
+  stage: test
+  image: fedora:29
+  script: &test
+    - ansible-playbook tests/test.yml -e virtualbox_user=root -v
+    - ansible-playbook tests/test.yml -e virtualbox_user=root -v
+
+test-centos-7:
+  stage: test
+  image: centos:7
+  script: *test
+
+test-ubuntu-bionic:
+  stage: test
+  image: ubuntu:bionic
+  script: *test
+
+test-debian-stretch:
+  stage: test
+  image: debian:stretch
+  script: *test

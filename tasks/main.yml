@@ -1,3 +1,12 @@
 ---
-- name: Include tasks for current distro
-  include_tasks: "{{ ansible_distribution | lower }}.yml"
+- name: Include appropriate tasks for target host's OS
+  become: yes
+  include_tasks: '{{ ansible_os_family | lower }}.yml'
+
+- name: Add user to vboxusers group
+  become: yes
+  user:
+    name: '{{ virtualbox_user }}'
+    append: yes
+    groups: vboxusers
+  when: virtualbox_user != ''

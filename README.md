@@ -1,23 +1,42 @@
-# google-chrome
+virtualbox
+=========
 
-Installs VirtualBox.
+An Ansible role that installs VirtualBox.
 
-# Requirements
+Requirements
+------------
 
-You'll need to be able to become root on the target box.
+This target host must run Linux. For VirtualBox to be of any use after it's installed, the target host should have virtualization extensions enabled and preferably not be a virtual machine.
 
-# Role Variables
+Role Variables
+--------------
 
-None.
+- `virtualbox_version`: Set this to the version you want to install.
+- `virtualbox_user`: Set this to a user account that you want added to the `vboxusers` group (allows that user to use VirtualBox without elevating privileges).
 
-# Dependencies
+Dependencies
+------------
 
-None.
+See meta/main.yml.
 
-# Example Playbook
+Example Playbook
+----------------
 
 ```yaml
 - hosts: localhost
   roles:
-      - claude_leveille.virtualbox
+     - role: devoperate.virtualbox
+       vars:
+         virtualbox_version: '6.0'
+         virtualbox_user: '{{ ansible_user }}' # The user that called the playbook.
 ```
+
+License
+-------
+
+See LICENSE.
+
+Author Information
+------------------
+
+- [Claude Léveillé](https://claude-leveille.com)
