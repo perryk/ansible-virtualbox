@@ -1,4 +1,10 @@
 ---
+- name: Install VirtualBox dependencies
+  apt:
+    name:
+      - apt-transport-https
+      - ca-certificates
+
 - name: Add VirtualBox apt key
   apt_key:
     url: 'https://www.virtualbox.org/download/oracle_vbox_2016.asc'
