@@ -7,6 +7,7 @@ variables:
 before_script:
   - dnf install python2-devel python2-pip -y && python2 -m pip install ansible || yum install -y ansible || true
   - sh -c "apt-get update && apt-get install -y python3-pip && pip3 install ansible" || true
+  - ansible-galaxy install -r tests/requirements.yml
 
 test-fedora-29:
   stage: test
