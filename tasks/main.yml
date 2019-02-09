@@ -9,4 +9,4 @@
     name: '{{ virtualbox_user }}'
     append: yes
     groups: vboxusers
-  when: virtualbox_user != ''
+  when: virtualbox_user | bool
